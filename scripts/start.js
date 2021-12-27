@@ -47,10 +47,15 @@ const startNest = async () => {
 
 const main = async () => {
   try {
+    console.log('[remove me] spot 1 reaached');
     await bundleIntoRedocStaticHTMLFile();
+    console.log('[remove me] spot 2 reaached');
     renameRedocStaticHTMLFileToIndexHTMLFile();
+    console.log('[remove me] spot 3 reaached');
     moveIndexHTMLFile();
+    console.log('[remove me] spot 4 reaached');
     startNest();
+    console.log('[remove me] spot 5 reaached');
   } catch (error) {
     console.log(
       '[debug] There was an error making a request. A request will be made again in 10 seconds.',
