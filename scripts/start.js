@@ -10,14 +10,7 @@ const bundleIntoRedocStaticHTMLFile = async () => {
 };
 
 const renameRedocStaticHTMLFileToIndexHTMLFile = () => {
-  const callback = (error) => {
-    if (error) {
-      console.log('[debug] There was an error when renaming the file.');
-    } else {
-      console.log('[debug] Renaming the file was successful.');
-    }
-  };
-  fs.renameSync('redoc-static.html', 'index.html', callback);
+  fs.renameSync('redoc-static.html', 'index.html');
 };
 
 const moveIndexHTMLFile = () => {
@@ -29,14 +22,7 @@ const moveIndexHTMLFile = () => {
     });
   }
   fs.mkdirSync('./public');
-  const renameSyncCallback = (error) => {
-    if (error) {
-      console.log('[debug] There was an error when moving the file.');
-    } else {
-      console.log('[debug] Moving the file was successful.');
-    }
-  };
-  fs.renameSync('index.html', 'public/index.html', renameSyncCallback);
+  fs.renameSync('index.html', 'public/index.html');
 };
 
 const startNest = async () => {
@@ -47,20 +33,14 @@ const startNest = async () => {
 
 const main = async () => {
   try {
-    console.log('[remove me] spot 1 reaached');
     await bundleIntoRedocStaticHTMLFile();
-    console.log('[remove me] spot 2 reaached');
     renameRedocStaticHTMLFileToIndexHTMLFile();
-    console.log('[remove me] spot 3 reaached');
     moveIndexHTMLFile();
-    console.log('[remove me] spot 4 reaached');
     startNest();
-    console.log('[remove me] spot 5 reaached');
   } catch (error) {
     console.log(
-      '[debug] There was an error making a request. A request will be made again in 10 seconds.',
+      '[debug] There was an error. The process will restart in 10 seconds.',
     );
-    console.log('[debug] error', error);
     setTimeout(main, 10000);
   }
 };
