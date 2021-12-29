@@ -25,18 +25,18 @@ const moveIndexHTMLFile = () => {
   fs.renameSync('index.html', 'public/index.html');
 };
 
-const startNest = async () => {
-  spawnSync('nest', ['start'], {
-    stdio: 'inherit',
-  });
-};
+// const startNest = async () => {
+//   spawnSync('nest', ['start'], {
+//     stdio: 'inherit',
+//   });
+// };
 
 const main = async () => {
   try {
     await bundleIntoRedocStaticHTMLFile();
     renameRedocStaticHTMLFileToIndexHTMLFile();
     moveIndexHTMLFile();
-    startNest();
+    // startNest();
   } catch (error) {
     console.log(
       '[debug] There was an error. The process will restart in 10 seconds.',
